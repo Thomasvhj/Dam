@@ -16,12 +16,16 @@ namespace Dam
         {
             InitializeComponent();
         }
+        int n = 2;
 
-
-        private void yearh()
+        private void Form1_Load(object sender, EventArgs e)
         {
 
         }
+
+
+
+
 
 
     }
