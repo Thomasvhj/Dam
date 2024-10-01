@@ -38,8 +38,12 @@ namespace Dam
                     P[i, j].Location = new Point(venstre, top);
                     P[i, j].Size = new Size(60, 60);
                     venstre += 60;
-                    if (i < (n / 2) - 1 && P[i, j].BackColor == Color.Black)
-
+                    if (i < (n / 2) - 1 && P[i, j].BackColor == Color.Black) { P[i, j].Image = Properties.Resources.s; P[i, j].Name += " s"; }
+                    else if ( i > (n/2) && P[i,j].BackColor == Color.Black)
+                    {
+                        P[i, j].Image = Properties.Resources.W; P[i, j].Name += " W";    
+                    }
+                    P[i, j].SizeMode = PictureBoxSizeMode.CenterImage;
 
                         G.Controls.Add(P[i, j]);
 
