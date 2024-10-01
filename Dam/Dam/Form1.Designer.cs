@@ -38,19 +38,17 @@
             // G
             // 
             this.G.BackColor = System.Drawing.Color.Gray;
-            this.G.Location = new System.Drawing.Point(8, 17);
-            this.G.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.G.Location = new System.Drawing.Point(12, 27);
             this.G.Name = "G";
-  
+            this.G.Size = new System.Drawing.Size(1186, 833);
             this.G.TabIndex = 0;
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = global::Dam.Properties.Resources.W;
-            this.pictureBox1.Location = new System.Drawing.Point(865, 161);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox1.Location = new System.Drawing.Point(1298, 252);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(67, 32);
+            this.pictureBox1.Size = new System.Drawing.Size(100, 50);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
@@ -78,12 +76,11 @@
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-
+            this.ClientSize = new System.Drawing.Size(1713, 1042);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.G);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "Form1";
             this.Text = " ";
             this.Load += new System.EventHandler(this.Form1_Load);

@@ -16,14 +16,14 @@ namespace Dam
         {
             InitializeComponent();
         }
-        int n ;
+        int n;
         int Turn;
         Random randTurn = new Random();
         PictureBox[,] P;
         private void Form1_Load(object sender, EventArgs e)
         {
 
-    
+
             n = 8;
             P = new PictureBox[n, n];
             int venstre = 2, top = 2;
@@ -41,20 +41,20 @@ namespace Dam
                     P[i, j].Size = new Size(60, 60);
                     venstre += 60;
                     if (i < (n / 2) - 1 && P[i, j].BackColor == Color.Black) { P[i, j].Image = Properties.Resources.s; P[i, j].Name += " s"; }
-                    else if ( i > (n/2) && P[i,j].BackColor == Color.Black)
+                    else if (i > (n / 2) && P[i, j].BackColor == Color.Black)
                     {
-                        P[i, j].Image = Properties.Resources.W; P[i, j].Name += " W";    
+                        P[i, j].Image = Properties.Resources.W; P[i, j].Name += " W";
                     }
                     P[i, j].SizeMode = PictureBoxSizeMode.CenterImage;
 
-                        G.Controls.Add(P[i, j]);
+                    G.Controls.Add(P[i, j]);
 
 
 
 
                 }
                 top += 60;
-                
+
             }
 
         }
