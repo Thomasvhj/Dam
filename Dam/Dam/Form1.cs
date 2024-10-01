@@ -17,6 +17,8 @@ namespace Dam
             InitializeComponent();
         }
         int n ;
+        int Turn;
+        Random randTurn = new Random();
         PictureBox[,] P;
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -48,13 +50,21 @@ namespace Dam
 
                 }
                 top += 60;
+                
             }
 
         }
 
+        private void btnStart_Click(object sender, EventArgs e)
+        {
+            Turn = randTurn.Next(1, 2);
+            btnStart.Visible = false;
+            btnQuit.Visible = true;
+        }
 
-
-
-
+        private void btnQuit_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
