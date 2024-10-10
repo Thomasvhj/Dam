@@ -20,7 +20,7 @@ namespace Dam
         int Turn;
         Random randTurn = new Random();
         PictureBox[,] P;
-        string color = " s", b = "", B1 = "", B2 = "";
+        string color = "s", k = "", B1 = "", B2 = "";
         private void Form1_Load(object sender, EventArgs e)
         {
             n = 8;
@@ -56,10 +56,6 @@ namespace Dam
                         if (p.Image != null) p.BackColor = Color.SandyBrown;
                     };
 
-
-
-
-
                     P[i, j].Click += (sender3, e3) =>
                     {
                         PictureBox p = sender3 as PictureBox;
@@ -71,23 +67,28 @@ namespace Dam
                             {
                                 x = Convert.ToInt32(p.Name.Split(' ')[0]);
                                 y = Convert.ToInt32(p.Name.Split(' ')[1]);
-                                b = p.Name;
+                                k = p.Name;
                                 if (p.Name.Split(' ')[2] == "s") c = 1;
-
-                                if (P[x + c, y + 1].Image == null)
+                                try
                                 {
-                                    P[x + c, y + 1].Image = Properties.Resources.b;
-                                    P[x + c, y + 1].Name = (x + c) + " " + (y + 1) + " b";
-                                    B1 = (x + c) + " " + (y + 1);
+                                    if (P[x + c, y + 1].Image == null)
+                                    {
+                                        P[x + c, y + 1].Image = Properties.Resources.b;
+                                        P[x + c, y + 1].Name = (x + c) + " " + (y + 1) + " b";
+                                        B1 = (x + c) + " " + (y + 1);
+                                    }
                                 }
-
-                                if (P[x + c, y - 1].Image == null)
+                                catch { }
+                                try
                                 {
-                                    P[x + c, y + 1].Image = Properties.Resources.b;
-                                    P[x + c, y + 1].Name = (x + c) + " " + (y - 1) + " b";
-                                    B1 = (x + c) + " " + (y - 1);
+                                    if (P[x + c, y - 1].Image == null)
+                                    {
+                                        P[x + c, y - 1].Image = Properties.Resources.b;
+                                        P[x + c, y - 1].Name = (x + c) + " " + (y - 1) + " b";
+                                        B2 = (x + c) + " " + (y - 1);
+                                    }
                                 }
-
+                                catch { }
                             }
 
                         }
