@@ -46,6 +46,18 @@ namespace Dam
                         P[i, j].Image = Properties.Resources.W; P[i, j].Name += " W";
                     }
                     P[i, j].SizeMode = PictureBoxSizeMode.CenterImage;
+                    P[i, j].MouseHover += (sender2, e2) =>
+                    {
+                        PictureBox p = sender2 as PictureBox;
+                        if (p.Image != null) p.BackColor = Color.FromArgb(255, 64, 64, 64);
+                    };
+                    P[i, j].MouseHover += (sender2, e2) =>
+                    {
+                        PictureBox p = sender2 as PictureBox;
+                        if (p.Image != null) p.BackColor = Color.LightGray;
+                    };
+
+
 
                     G.Controls.Add(P[i, j]);
 
