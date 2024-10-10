@@ -26,12 +26,12 @@ namespace Dam
             n = 8;
             P = new PictureBox[n, n];
             int venstre = 2, top = 2;
-            Color[] colors = new Color[] { Color.White, Color.SandyBrown };
+            Color[] colors = new Color[] { Color.SaddleBrown, Color.SandyBrown };
             for (int i = 0; i < n; i++)
             {
                 venstre = 2;
-                if (i % 2 == 0) { colors[0] = Color.White; colors[1] = Color.SandyBrown; }
-                else { colors[0] = Color.SandyBrown; colors[1] = Color.White; }
+                if (i % 2 == 0) { colors[0] = Color.SaddleBrown; colors[1] = Color.SandyBrown; }
+                else { colors[0] = Color.SandyBrown; colors[1] = Color.SaddleBrown; }
                 for (int j = 0; j < n; j++)
                 {
                     P[i, j] = new PictureBox();
@@ -50,11 +50,15 @@ namespace Dam
                         PictureBox p = sender2 as PictureBox;
                         if (p.Image != null) p.BackColor = Color.FromArgb(255, 64, 64, 64);
                     };
-                    P[i, j].MouseHover += (sender2, e2) =>
+                    P[i, j].MouseLeave += (sender2, e2) =>
                     {
                         PictureBox p = sender2 as PictureBox;
-                        if (p.Image != null) p.BackColor = Color.LightGray;
+                        if (p.Image != null) p.BackColor = Color.SandyBrown;
                     };
+
+
+
+
 
                     P[i, j].Click += (sender3, e3) =>
                     {
