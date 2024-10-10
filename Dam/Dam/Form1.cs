@@ -27,12 +27,12 @@ namespace Dam
             n = 8;
             P = new PictureBox[n, n];
             int venstre = 2, top = 2;
-            Color[] colors = new Color[] { Color.White, Color.Black };
+            Color[] colors = new Color[] { Color.White, Color.SandyBrown };
             for (int i = 0; i < n; i++)
             {
                 venstre = 2;
-                if (i % 2 == 0) { colors[0] = Color.White; colors[1] = Color.Black; }
-                else { colors[0] = Color.Black; colors[1] = Color.White; }
+                if (i % 2 == 0) { colors[0] = Color.White; colors[1] = Color.SandyBrown; }
+                else { colors[0] = Color.SandyBrown; colors[1] = Color.White; }
                 for (int j = 0; j < n; j++)
                 {
                     P[i, j] = new PictureBox();
@@ -40,8 +40,8 @@ namespace Dam
                     P[i, j].Location = new Point(venstre, top);
                     P[i, j].Size = new Size(60, 60);
                     venstre += 60;
-                    if (i < (n / 2) - 1 && P[i, j].BackColor == Color.Black) { P[i, j].Image = Properties.Resources.s; P[i, j].Name += " s"; }
-                    else if (i > (n / 2) && P[i, j].BackColor == Color.Black)
+                    if (i < (n / 2) - 1 && P[i, j].BackColor == Color.SandyBrown) { P[i, j].Image = Properties.Resources.s; P[i, j].Name += " s"; }
+                    else if (i > (n / 2) && P[i, j].BackColor == Color.SandyBrown)
                     {
                         P[i, j].Image = Properties.Resources.W; P[i, j].Name += " W";
                     }

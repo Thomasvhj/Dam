@@ -40,7 +40,7 @@
             this.G.BackColor = System.Drawing.Color.Gray;
             this.G.Location = new System.Drawing.Point(12, 27);
             this.G.Name = "G";
-            this.G.Size = new System.Drawing.Size(1186, 833);
+            this.G.Size = new System.Drawing.Size(1038, 931);
             this.G.TabIndex = 0;
             // 
             // pictureBox1
@@ -78,7 +78,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1713, 1042);
+            this.ClientSize = new System.Drawing.Size(1679, 1059);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.G);
             this.Name = "Form1";
