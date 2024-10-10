@@ -79,16 +79,16 @@ namespace Dam
 
         }
 
+        private void btnQuit_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
         private void btnStart_Click(object sender, EventArgs e)
         {
             Turn = randTurn.Next(1, 2);
             btnStart.Visible = false;
             btnQuit.Visible = true;
-        }
-
-        private void btnQuit_Click(object sender, EventArgs e)
-        {
-            this.Close();
         }
     }
 }
