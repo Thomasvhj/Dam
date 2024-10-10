@@ -20,6 +20,7 @@ namespace Dam
         int Turn;
         Random randTurn = new Random();
         PictureBox[,] P;
+        string color = " s", b = "", B1 = "", B2 = "";
         private void Form1_Load(object sender, EventArgs e)
         {
 
@@ -62,16 +63,35 @@ namespace Dam
                         PictureBox p = sender3 as PictureBox;
                         if (p.Image != null)
                         {
-                            int c = -1
-                        }
-                    }
+                            int c = -1, x, y;
 
+                            if (p.Name.Split(' ')[2] == color)
+                            {
+                                x = Convert.ToInt32(p.Name.Split(' ')[0]);
+                                y = Convert.ToInt32(p.Name.Split(' ')[1]);
+                                b = p.Name;
+                                if (p.Name.Split(' ')[2] == "s") c = 1;
+
+                                if (P[x + c, y + 1].Image == null)
+                                {
+                                    P[x + c, y + 1].Image = Properties.Resources.b;
+                                    P[x + c, y + 1].Name = (x + c) + " " + (y + 1) + " b";
+                                    B1 = (x + c) + " " + (y + 1);
+                                }
+
+                                if (P[x + c, y - 1].Image == null)
+                                {
+                                    P[x + c, y + 1].Image = Properties.Resources.b;
+                                    P[x + c, y + 1].Name = (x + c) + " " + (y - 1) + " b";
+                                    B1 = (x + c) + " " + (y - 1);
+                                }
+
+                            }
+
+                        }
+                    };
 
                     G.Controls.Add(P[i, j]);
-
-
-
-
                 }
                 top += 60;
 
