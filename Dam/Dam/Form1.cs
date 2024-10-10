@@ -57,6 +57,14 @@ namespace Dam
                         if (p.Image != null) p.BackColor = Color.LightGray;
                     };
 
+                    P[i, j].Click += (sender3, e3) =>
+                    {
+                        PictureBox p = sender3 as PictureBox;
+                        if (p.Image != null)
+                        {
+                            int c = -1
+                        }
+                    }
 
 
                     G.Controls.Add(P[i, j]);
