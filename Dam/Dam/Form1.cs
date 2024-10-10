@@ -23,8 +23,6 @@ namespace Dam
         string color = " s", b = "", B1 = "", B2 = "";
         private void Form1_Load(object sender, EventArgs e)
         {
-
-
             n = 8;
             P = new PictureBox[n, n];
             int venstre = 2, top = 2;
