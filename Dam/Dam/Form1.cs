@@ -17,7 +17,6 @@ namespace Dam
             InitializeComponent();
         }
         int n;
-        
         int player1;
         int player2;
         Random randTurn = new Random();
@@ -205,6 +204,7 @@ namespace Dam
         {
             btnStart.Visible = false;
             btnQuit.Visible = true;
+
         }
     }
 }
