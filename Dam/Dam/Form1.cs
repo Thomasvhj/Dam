@@ -78,7 +78,7 @@ namespace Dam
                                 y = Convert.ToInt32(k.Split(' ')[1]);
                                 B1 = "";
                                 B2 = "";
-                                if (k.Split(' ')[2]=="s")
+                                if (k.Split(' ')[2] == "s")
                                 {
                                     p.Image = Properties.Resources.s;
                                     p.Name = p.Name.Replace("b", "s");
@@ -90,11 +90,12 @@ namespace Dam
                                     p.Name = p.Name.Replace("b", "W");
                                 }
                                 P[x, y].Image = null; 
+                                
                                 if (k2 != "")
                                 {
                                     x = Convert.ToInt32(k2.Split(' ')[0]);
                                     y = Convert.ToInt32(k2.Split(' ')[1]);
-                                    P[x,y].Image = null;
+                                    P[x, y].Image = null;
                                     if (k2.Split(' ')[2] == "s") player1++;
                                     else player2++;
                                     k2 = "";
@@ -119,7 +120,7 @@ namespace Dam
                                     }
                                     else
                                     {
-                                        if (P[x+c,y+1].Name.Split(' ')[2] != p.Name.Split(' ')[2] && P[x + (c*2), y+2].Image ==null )
+                                        if (P[x+c, y+1].Name.Split(' ')[2] != p.Name.Split(' ')[2] && P[x + (c*2), y+2].Image ==null )
                                         {
                                             P[x + (c * 2), y + 2].Image = Properties.Resources.b;
                                             P[x + (c * 2), y + 2].Name = (x + (c * 2)) + " " + (y + 2) + " b";
@@ -143,7 +144,7 @@ namespace Dam
                                     {
                                         P[x + (c * 2), y - 2].Image = Properties.Resources.b;
                                         P[x + (c * 2), y - 2].Name = (x + (c * 2)) + " " + (y - 2) + " b";
-                                        B1 = (x + (c * 2)) + " " + (y - 2);
+                                        B2 = (x + (c * 2)) + " " + (y - 2);
                                         k2 = (x + c) + " " + (y - 1) + " " + P[x + c, y - 1].Name.Split(' ')[2];
                                     }
                                 }
