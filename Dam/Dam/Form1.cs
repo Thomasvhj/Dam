@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Text;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,8 +27,11 @@ namespace Dam
         string B1 = "";
         string B2 = "";
         string k2 = "";
+        
+
         private void Form1_Load(object sender, EventArgs e)
         {
+            groupBox1.Visible=false;
             n = 8;
             P = new PictureBox[n, n];
             int venstre = 2, top = 2;
@@ -45,7 +49,7 @@ namespace Dam
                     P[i, j].Size = new Size(60, 60);
                     venstre += 60;
                     P[i, j].Name = i + " " + j;
-                    
+
                     if (i < (n / 2) - 1 && P[i, j].BackColor == Color.SandyBrown) { P[i, j].Image = Properties.Resources.s; P[i, j].Name += " s"; }
                     else if (i > (n / 2) && P[i, j].BackColor == Color.SandyBrown)
                     {
@@ -65,12 +69,12 @@ namespace Dam
 
                     P[i, j].Click += (sender3, e3) =>
                     {
-                        
+
                         PictureBox p = sender3 as PictureBox;
                         if (p.Image != null)
                         {
                             int c = -1, x, y;
-                            F();
+                            valgfjerner();
                             if (p.Name.Split(' ')[2] == "b")
                             {
                                 if (color == "s") color = "W";
@@ -90,21 +94,32 @@ namespace Dam
                                     p.Image = Properties.Resources.W;
                                     p.Name = p.Name.Replace("b", "W");
                                 }
-                                P[x, y].Image = null; 
-                                
+                                P[x, y].Image = null;
+
+
                                 if (k2 != "")
                                 {
                                     x = Convert.ToInt32(k2.Split(' ')[0]);
                                     y = Convert.ToInt32(k2.Split(' ')[1]);
                                     P[x, y].Image = null;
-                                    if (k2.Split(' ')[2] == "s") player1++;
-                                    else player2++;
+                                    if (k2.Split(' ')[2] == "s")
+                                    {
+                                        player1++;
+                                        label2taget.Text = "Taget brikker; " + player1.ToString();
+                                    }
 
+                                    else
+                                    {
+                                        player2++;
+                                        label1taget.Text = "Taget brikker; " + player2.ToString();
+                                    }
+                                    winner();
                                     k2 = "";
+
 
                                 }
                             }
-                            else 
+                            else
                             if (p.Name.Split(' ')[2] == color)
                             {
 
@@ -122,14 +137,14 @@ namespace Dam
                                     }
                                     else
                                     {
-                                        if (P[x+c, y+1].Name.Split(' ')[2] != p.Name.Split(' ')[2] && P[x + (c*2), y+2].Image ==null )
+                                        if (P[x + c, y + 1].Name.Split(' ')[2] != p.Name.Split(' ')[2] && P[x + (c * 2), y + 2].Image == null)
                                         {
                                             P[x + (c * 2), y + 2].Image = Properties.Resources.b;
                                             P[x + (c * 2), y + 2].Name = (x + (c * 2)) + " " + (y + 2) + " b";
                                             B1 = (x + (c * 2)) + " " + (y + 2);
                                             k2 = (x + c) + " " + (y + 1) + " " + P[x + c, y + 1].Name.Split(' ')[2];
                                         }
-                                        
+
                                     }
                                 }
                                 catch { }
@@ -164,16 +179,18 @@ namespace Dam
 
         }
 
-        private void F()
+ 
+
+        private void valgfjerner()
         {
-            if ( B1 != "")
+            if (B1 != "")
             {
-                int x, y; 
+                int x, y;
                 x = Convert.ToInt32(B1.Split(' ')[0]);
                 y = Convert.ToInt32(B1.Split(' ')[1]);
                 P[x, y].Image = null;
             }
-            if( B2 != "")
+            if (B2 != "")
             {
                 int x, y;
                 x = Convert.ToInt32(B2.Split(' ')[0]);
@@ -184,16 +201,35 @@ namespace Dam
 
         public void restart()
         {
-            for (int h = 0; h<n; h++) { 
-            if (h < (n / 2) - 1 && P[h, 1].BackColor == Color.SandyBrown) { P[h, 1].Image = Properties.Resources.s; P[h, 1].Name += " s"; }
-            else if (h > (n / 2) && P[h, 1].BackColor == Color.SandyBrown)
+            for (int h = 0; h < n; h++)
+                for (int l = 0; l < n; l++)
             {
-                P[h, 1].Image = Properties.Resources.W; P[h, 1].Name += " W";
+                if (h < (n / 2) - 1 && P[h, l].BackColor == Color.SandyBrown) { P[h, l].Image = Properties.Resources.s; P[h, l].Name = h +"  "+l+ " s"; }
+                else if (h > (n / 2) && P[h, l].BackColor == Color.SandyBrown)
+                {
+                    P[h, l].Image = Properties.Resources.W; P[h, l].Name = h + "  " +l+ " W";
+                }
+                if (h == ((n / 2) - 1) || h == (n / 2)) P[h, l].Image = null;
             }
-                if (h == ((n / 2) - 1) || h == (n / 2)) P[h, 1].Image = null;
+            label1taget.Text = "Taget brikker; 0";
+            label2taget.Text = "Taget brikker; 0";
+            player1 = 0;
+            player2 = 0;
+            
+        }
+        private void winner()
+        {
+            if (player1 == 12)
+            {
+                groupBox1.Visible = true;
+                label3.Text = textBox1.Text + " Vandt!";
+            }
+            else if ( player2 == 12)
+            {
+                groupBox1.Visible = true;
+                label3.Text = textBox2.Text + " Vandt!";
             }
         }
-
 
         private void btnQuit_Click(object sender, EventArgs e)
         {
@@ -204,7 +240,15 @@ namespace Dam
         {
             btnStart.Visible = false;
             btnQuit.Visible = true;
+            
+        }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            groupBox1.Visible = false;
+            restart();
+
+            
         }
     }
 }
