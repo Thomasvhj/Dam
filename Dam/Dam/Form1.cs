@@ -17,7 +17,7 @@ namespace Dam
             InitializeComponent();
         }
         int n;
-        int Turn;
+        
         int player1;
         int player2;
         Random randTurn = new Random();
@@ -203,7 +203,6 @@ namespace Dam
 
         private void btnStart_Click(object sender, EventArgs e)
         {
-            Turn = randTurn.Next(1, 2);
             btnStart.Visible = false;
             btnQuit.Visible = true;
         }
