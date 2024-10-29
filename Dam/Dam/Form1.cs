@@ -46,6 +46,7 @@ namespace Dam
                     P[i, j].Size = new Size(60, 60);
                     venstre += 60;
                     P[i, j].Name = i + " " + j;
+                    
                     if (i < (n / 2) - 1 && P[i, j].BackColor == Color.SandyBrown) { P[i, j].Image = Properties.Resources.s; P[i, j].Name += " s"; }
                     else if (i > (n / 2) && P[i, j].BackColor == Color.SandyBrown)
                     {
@@ -65,6 +66,7 @@ namespace Dam
 
                     P[i, j].Click += (sender3, e3) =>
                     {
+                        
                         PictureBox p = sender3 as PictureBox;
                         if (p.Image != null)
                         {
@@ -98,6 +100,7 @@ namespace Dam
                                     P[x, y].Image = null;
                                     if (k2.Split(' ')[2] == "s") player1++;
                                     else player2++;
+
                                     k2 = "";
 
                                 }
@@ -179,6 +182,19 @@ namespace Dam
                 P[x, y].Image = null;
             }
         }
+
+        public void restart()
+        {
+            for (int h = 0; h<n; h++) { 
+            if (h < (n / 2) - 1 && P[h, 1].BackColor == Color.SandyBrown) { P[h, 1].Image = Properties.Resources.s; P[h, 1].Name += " s"; }
+            else if (h > (n / 2) && P[h, 1].BackColor == Color.SandyBrown)
+            {
+                P[h, 1].Image = Properties.Resources.W; P[h, 1].Name += " W";
+            }
+                if (h == ((n / 2) - 1) || h == (n / 2)) P[h, 1].Image = null;
+            }
+        }
+
 
         private void btnQuit_Click(object sender, EventArgs e)
         {
