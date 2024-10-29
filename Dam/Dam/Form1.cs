@@ -18,9 +18,15 @@ namespace Dam
         }
         int n;
         int Turn;
+        int player1;
+        int player2;
         Random randTurn = new Random();
         PictureBox[,] P;
-        string color = "s", k = "", B1 = "", B2 = "";
+        string color = "s";
+        string k = "";
+        string B1 = "";
+        string B2 = "";
+        string k2 = "";
         private void Form1_Load(object sender, EventArgs e)
         {
             n = 8;
@@ -39,6 +45,7 @@ namespace Dam
                     P[i, j].Location = new Point(venstre, top);
                     P[i, j].Size = new Size(60, 60);
                     venstre += 60;
+                    P[i, j].Name = i + " " + j;
                     if (i < (n / 2) - 1 && P[i, j].BackColor == Color.SandyBrown) { P[i, j].Image = Properties.Resources.s; P[i, j].Name += " s"; }
                     else if (i > (n / 2) && P[i, j].BackColor == Color.SandyBrown)
                     {
@@ -62,9 +69,42 @@ namespace Dam
                         if (p.Image != null)
                         {
                             int c = -1, x, y;
+                            F();
+                            if (p.Name.Split(' ')[2] == "b")
+                            {
+                                if (color == "s") color = "W";
+                                else color = "s";
+                                x = Convert.ToInt32(k.Split(' ')[0]);
+                                y = Convert.ToInt32(k.Split(' ')[1]);
+                                B1 = "";
+                                B2 = "";
+                                if (k.Split(' ')[2]=="s")
+                                {
+                                    p.Image = Properties.Resources.s;
+                                    p.Name = p.Name.Replace("b", "s");
+                                }
+                                else
+                                if (k.Split(' ')[2] == "W")
+                                {
+                                    p.Image = Properties.Resources.W;
+                                    p.Name = p.Name.Replace("b", "W");
+                                }
+                                P[x, y].Image = null; 
+                                if (k2 != "")
+                                {
+                                    x = Convert.ToInt32(k2.Split(' ')[0]);
+                                    y = Convert.ToInt32(k2.Split(' ')[1]);
+                                    P[x,y].Image = null;
+                                    if (k2.Split(' ')[2] == "s") player1++;
+                                    else player2++;
+                                    k2 = "";
 
+                                }
+                            }
+                            else 
                             if (p.Name.Split(' ')[2] == color)
                             {
+
                                 x = Convert.ToInt32(p.Name.Split(' ')[0]);
                                 y = Convert.ToInt32(p.Name.Split(' ')[1]);
                                 k = p.Name;
@@ -77,6 +117,17 @@ namespace Dam
                                         P[x + c, y + 1].Name = (x + c) + " " + (y + 1) + " b";
                                         B1 = (x + c) + " " + (y + 1);
                                     }
+                                    else
+                                    {
+                                        if (P[x+c,y+1].Name.Split(' ')[2] != p.Name.Split(' ')[2] && P[x + (c*2), y+2].Image ==null )
+                                        {
+                                            P[x + (c * 2), y + 2].Image = Properties.Resources.b;
+                                            P[x + (c * 2), y + 2].Name = (x + (c * 2)) + " " + (y + 2) + " b";
+                                            B1 = (x + (c * 2)) + " " + (y + 2);
+                                            k2 = (x + c) + " " + (y + 1) + " " + P[x + c, y + 1].Name.Split(' ')[2];
+                                        }
+                                        
+                                    }
                                 }
                                 catch { }
                                 try
@@ -86,6 +137,14 @@ namespace Dam
                                         P[x + c, y - 1].Image = Properties.Resources.b;
                                         P[x + c, y - 1].Name = (x + c) + " " + (y - 1) + " b";
                                         B2 = (x + c) + " " + (y - 1);
+                                    }
+                                    else
+                                        if (P[x + c, y - 1].Name.Split(' ')[2] != p.Name.Split(' ')[2] && P[x + (c * 2), y - 2].Image == null)
+                                    {
+                                        P[x + (c * 2), y - 2].Image = Properties.Resources.b;
+                                        P[x + (c * 2), y - 2].Name = (x + (c * 2)) + " " + (y - 2) + " b";
+                                        B1 = (x + (c * 2)) + " " + (y - 2);
+                                        k2 = (x + c) + " " + (y - 1) + " " + P[x + c, y - 1].Name.Split(' ')[2];
                                     }
                                 }
                                 catch { }
@@ -100,6 +159,24 @@ namespace Dam
 
             }
 
+        }
+
+        private void F()
+        {
+            if ( B1 != "")
+            {
+                int x, y; 
+                x = Convert.ToInt32(B1.Split(' ')[0]);
+                y = Convert.ToInt32(B1.Split(' ')[1]);
+                P[x, y].Image = null;
+            }
+            if( B2 != "")
+            {
+                int x, y;
+                x = Convert.ToInt32(B2.Split(' ')[0]);
+                y = Convert.ToInt32(B2.Split(' ')[1]);
+                P[x, y].Image = null;
+            }
         }
 
         private void btnQuit_Click(object sender, EventArgs e)
