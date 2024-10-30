@@ -40,14 +40,12 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label3 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
-            this.G.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // G
             // 
             this.G.BackColor = System.Drawing.Color.Gray;
-            this.G.Controls.Add(this.groupBox1);
             this.G.Location = new System.Drawing.Point(12, 105);
             this.G.Name = "G";
             this.G.Size = new System.Drawing.Size(1007, 931);
@@ -132,7 +130,7 @@
             this.groupBox1.BackColor = System.Drawing.Color.LightSkyBlue;
             this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Location = new System.Drawing.Point(13, 3);
+            this.groupBox1.Location = new System.Drawing.Point(1046, 114);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(934, 708);
             this.groupBox1.TabIndex = 10;
@@ -144,7 +142,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label3.Location = new System.Drawing.Point(327, 289);
+            this.label3.Location = new System.Drawing.Point(365, 329);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(171, 61);
             this.label3.TabIndex = 0;
@@ -165,6 +163,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1748, 1106);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label2taget);
             this.Controls.Add(this.label1taget);
             this.Controls.Add(this.textBox2);
@@ -176,8 +175,6 @@
             this.Controls.Add(this.G);
             this.Name = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
-            this.G.ResumeLayout(false);
-            this.G.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);

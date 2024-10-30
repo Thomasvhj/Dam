@@ -20,8 +20,7 @@ namespace Dam
         int n;
         int player1;
         int player2;
-        Random randTurn = new Random();
-        PictureBox[,] P;
+        PictureBox[,] Placering;
         string color = "s";
         string k = "";
         string B1 = "";
@@ -30,44 +29,58 @@ namespace Dam
         
 
         private void Form1_Load(object sender, EventArgs e)
-        {
+        { 
             groupBox1.Visible=false;
-            n = 8;
-            P = new PictureBox[n, n];
+            
+            Placering = new PictureBox[8, 8];
             int venstre = 2, top = 2;
             Color[] colors = new Color[] { Color.SaddleBrown, Color.SandyBrown };
-            for (int i = 0; i < n; i++)
+            for (int i = 0; i < 8; i++)
             {
                 venstre = 2;
-                if (i % 2 == 0) { colors[0] = Color.SaddleBrown; colors[1] = Color.SandyBrown; }
-                else { colors[0] = Color.SandyBrown; colors[1] = Color.SaddleBrown; }
-                for (int j = 0; j < n; j++)
+                if (i % 2 == 0)
                 {
-                    P[i, j] = new PictureBox();
-                    P[i, j].BackColor = colors[(j % 2 == 0) ? 1 : 0];
-                    P[i, j].Location = new Point(venstre, top);
-                    P[i, j].Size = new Size(60, 60);
-                    venstre += 60;
-                    P[i, j].Name = i + " " + j;
+                    colors[0] = Color.SaddleBrown; 
+                    colors[1] = Color.SandyBrown; 
+                }
+                else 
+                { 
+                    colors[0] = Color.SandyBrown; 
+                    colors[1] = Color.SaddleBrown; 
+                }
 
-                    if (i < (n / 2) - 1 && P[i, j].BackColor == Color.SandyBrown) { P[i, j].Image = Properties.Resources.s; P[i, j].Name += " s"; }
-                    else if (i > (n / 2) && P[i, j].BackColor == Color.SandyBrown)
-                    {
-                        P[i, j].Image = Properties.Resources.W; P[i, j].Name += " W";
+                for (int j = 0; j < 8; j++)
+                {
+                    Placering[i, j] = new PictureBox();
+                    Placering[i, j].BackColor = colors[(j % 2 == 0) ? 1 : 0];
+                    Placering[i, j].Location = new Point(venstre, top);
+                    Placering[i, j].Size = new Size(60, 60);
+                    venstre += 60;
+                    Placering[i, j].Name = i + " " + j;
+
+                    if (i < (8 / 2) - 1 && Placering[i, j].BackColor == Color.SandyBrown)
+                    { 
+                        Placering[i, j].Image = Properties.Resources.s; Placering[i, j].Name += " s"; //Her opstiller vi brikkerne
                     }
-                    P[i, j].SizeMode = PictureBoxSizeMode.CenterImage;
-                    P[i, j].MouseHover += (sender2, e2) =>
+                    else if (i > (8 / 2) && Placering[i, j].BackColor == Color.SandyBrown)
+                    {
+                        Placering[i, j].Image = Properties.Resources.W; Placering[i, j].Name += " W"; //Her opstiller vi brikkerne 
+                    }
+                    Placering[i, j].SizeMode = PictureBoxSizeMode.CenterImage;
+                    Placering[i, j].MouseHover += (sender2, e2) =>
                     {
                         PictureBox p = sender2 as PictureBox;
                         if (p.Image != null) p.BackColor = Color.FromArgb(255, 64, 64, 64);
                     };
-                    P[i, j].MouseLeave += (sender2, e2) =>
+                    Placering[i, j].MouseLeave += (sender2, e2) =>
                     {
                         PictureBox p = sender2 as PictureBox;
                         if (p.Image != null) p.BackColor = Color.SandyBrown;
                     };
 
-                    P[i, j].Click += (sender3, e3) =>
+
+
+                    Placering[i, j].Click += (sender3, e3) =>
                     {
 
                         PictureBox p = sender3 as PictureBox;
@@ -94,14 +107,14 @@ namespace Dam
                                     p.Image = Properties.Resources.W;
                                     p.Name = p.Name.Replace("b", "W");
                                 }
-                                P[x, y].Image = null;
+                                Placering[x, y].Image = null;
 
 
                                 if (k2 != "")
                                 {
                                     x = Convert.ToInt32(k2.Split(' ')[0]);
                                     y = Convert.ToInt32(k2.Split(' ')[1]);
-                                    P[x, y].Image = null;
+                                    Placering[x, y].Image = null;
                                     if (k2.Split(' ')[2] == "s")
                                     {
                                         player1++;
@@ -129,20 +142,20 @@ namespace Dam
                                 if (p.Name.Split(' ')[2] == "s") c = 1;
                                 try
                                 {
-                                    if (P[x + c, y + 1].Image == null)
+                                    if (Placering[x + c, y + 1].Image == null)
                                     {
-                                        P[x + c, y + 1].Image = Properties.Resources.b;
-                                        P[x + c, y + 1].Name = (x + c) + " " + (y + 1) + " b";
+                                        Placering[x + c, y + 1].Image = Properties.Resources.b;
+                                        Placering[x + c, y + 1].Name = (x + c) + " " + (y + 1) + " b";
                                         B1 = (x + c) + " " + (y + 1);
                                     }
                                     else
                                     {
-                                        if (P[x + c, y + 1].Name.Split(' ')[2] != p.Name.Split(' ')[2] && P[x + (c * 2), y + 2].Image == null)
+                                        if (Placering[x + c, y + 1].Name.Split(' ')[2] != p.Name.Split(' ')[2] && Placering[x + (c * 2), y + 2].Image == null)
                                         {
-                                            P[x + (c * 2), y + 2].Image = Properties.Resources.b;
-                                            P[x + (c * 2), y + 2].Name = (x + (c * 2)) + " " + (y + 2) + " b";
+                                            Placering[x + (c * 2), y + 2].Image = Properties.Resources.b;
+                                            Placering[x + (c * 2), y + 2].Name = (x + (c * 2)) + " " + (y + 2) + " b";
                                             B1 = (x + (c * 2)) + " " + (y + 2);
-                                            k2 = (x + c) + " " + (y + 1) + " " + P[x + c, y + 1].Name.Split(' ')[2];
+                                            k2 = (x + c) + " " + (y + 1) + " " + Placering[x + c, y + 1].Name.Split(' ')[2];
                                         }
 
                                     }
@@ -150,19 +163,19 @@ namespace Dam
                                 catch { }
                                 try
                                 {
-                                    if (P[x + c, y - 1].Image == null)
+                                    if (Placering[x + c, y - 1].Image == null)
                                     {
-                                        P[x + c, y - 1].Image = Properties.Resources.b;
-                                        P[x + c, y - 1].Name = (x + c) + " " + (y - 1) + " b";
+                                        Placering[x + c, y - 1].Image = Properties.Resources.b;
+                                        Placering[x + c, y - 1].Name = (x + c) + " " + (y - 1) + " b";
                                         B2 = (x + c) + " " + (y - 1);
                                     }
                                     else
-                                        if (P[x + c, y - 1].Name.Split(' ')[2] != p.Name.Split(' ')[2] && P[x + (c * 2), y - 2].Image == null)
+                                        if (Placering[x + c, y - 1].Name.Split(' ')[2] != p.Name.Split(' ')[2] && Placering[x + (c * 2), y - 2].Image == null)
                                     {
-                                        P[x + (c * 2), y - 2].Image = Properties.Resources.b;
-                                        P[x + (c * 2), y - 2].Name = (x + (c * 2)) + " " + (y - 2) + " b";
+                                        Placering[x + (c * 2), y - 2].Image = Properties.Resources.b;
+                                        Placering[x + (c * 2), y - 2].Name = (x + (c * 2)) + " " + (y - 2) + " b";
                                         B2 = (x + (c * 2)) + " " + (y - 2);
-                                        k2 = (x + c) + " " + (y - 1) + " " + P[x + c, y - 1].Name.Split(' ')[2];
+                                        k2 = (x + c) + " " + (y - 1) + " " + Placering[x + c, y - 1].Name.Split(' ')[2];
                                     }
                                 }
                                 catch { }
@@ -171,7 +184,7 @@ namespace Dam
                         }
                     };
 
-                    G.Controls.Add(P[i, j]);
+                    G.Controls.Add(Placering[i, j]);
                 }
                 top += 60;
 
@@ -188,14 +201,14 @@ namespace Dam
                 int x, y;
                 x = Convert.ToInt32(B1.Split(' ')[0]);
                 y = Convert.ToInt32(B1.Split(' ')[1]);
-                P[x, y].Image = null;
+                Placering[x, y].Image = null;
             }
             if (B2 != "")
             {
                 int x, y;
                 x = Convert.ToInt32(B2.Split(' ')[0]);
                 y = Convert.ToInt32(B2.Split(' ')[1]);
-                P[x, y].Image = null;
+                Placering[x, y].Image = null;
             }
         }
 
@@ -204,12 +217,15 @@ namespace Dam
             for (int h = 0; h < n; h++)
                 for (int l = 0; l < n; l++)
             {
-                if (h < (n / 2) - 1 && P[h, l].BackColor == Color.SandyBrown) { P[h, l].Image = Properties.Resources.s; P[h, l].Name = h +"  "+l+ " s"; }
-                else if (h > (n / 2) && P[h, l].BackColor == Color.SandyBrown)
+                if (h < (n / 2) - 1 && Placering[h, l].BackColor == Color.SandyBrown) 
+                    {
+                        Placering[h, l].Image = Properties.Resources.s; Placering[h, l].Name = h +"  "+l+ " s"; 
+                    }
+                else if (h > (n / 2) && Placering[h, l].BackColor == Color.SandyBrown)
                 {
-                    P[h, l].Image = Properties.Resources.W; P[h, l].Name = h + "  " +l+ " W";
+                    Placering[h, l].Image = Properties.Resources.W; Placering[h, l].Name = h + "  " +l+ " W";
                 }
-                if (h == ((n / 2) - 1) || h == (n / 2)) P[h, l].Image = null;
+                if (h == ((n / 2) - 1) || h == (n / 2)) Placering[h, l].Image = null;
             }
             label1taget.Text = "Taget brikker; 0";
             label2taget.Text = "Taget brikker; 0";
