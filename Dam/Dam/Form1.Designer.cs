@@ -38,9 +38,14 @@
             this.label1taget = new System.Windows.Forms.Label();
             this.label2taget = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.Menu = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuQuit = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuRestart = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // G
@@ -137,6 +142,16 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "groupBox1";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(376, 420);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(226, 95);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "Start igen";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -148,15 +163,40 @@
             this.label3.TabIndex = 0;
             this.label3.Text = "label3";
             // 
-            // button1
+            // menuStrip1
             // 
-            this.button1.Location = new System.Drawing.Point(376, 420);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(226, 95);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Start igen";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.menuStrip1.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
+            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(32, 32);
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.Menu});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(1748, 42);
+            this.menuStrip1.TabIndex = 11;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // Menu
+            // 
+            this.Menu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MenuQuit,
+            this.MenuRestart});
+            this.Menu.Name = "Menu";
+            this.Menu.Size = new System.Drawing.Size(97, 40);
+            this.Menu.Text = "Menu";
+            // 
+            // MenuQuit
+            // 
+            this.MenuQuit.Name = "MenuQuit";
+            this.MenuQuit.Size = new System.Drawing.Size(359, 44);
+            this.MenuQuit.Text = "Quit";
+            this.MenuQuit.Click += new System.EventHandler(this.MenuQuit_Click);
+            // 
+            // MenuRestart
+            // 
+            this.MenuRestart.Name = "MenuRestart";
+            this.MenuRestart.Size = new System.Drawing.Size(359, 44);
+            this.MenuRestart.Text = "Restart";
+            this.MenuRestart.Click += new System.EventHandler(this.MenuRestart_Click);
             // 
             // Form1
             // 
@@ -173,10 +213,14 @@
             this.Controls.Add(this.btnStart);
             this.Controls.Add(this.btnQuit);
             this.Controls.Add(this.G);
+            this.Controls.Add(this.menuStrip1);
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -196,6 +240,10 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem Menu;
+        private System.Windows.Forms.ToolStripMenuItem MenuQuit;
+        private System.Windows.Forms.ToolStripMenuItem MenuRestart;
     }
 }
 

@@ -187,9 +187,7 @@ namespace Dam
                     G.Controls.Add(Placering[i, j]);
                 }
                 top += 60;
-
             }
-
         }
 
  
@@ -269,8 +267,17 @@ namespace Dam
         {
             groupBox1.Visible = false;
             restart();
+        }
 
-            
+        private void MenuQuit_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void MenuRestart_Click(object sender, EventArgs e)
+        {
+            restart();
+            btnQuit.Visible = false; btnStart.Visible = true;
         }
     }
 }
