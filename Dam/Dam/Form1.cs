@@ -54,7 +54,7 @@ namespace Dam
 
                 for (int j = 0; j < 8; j++) // Kolonner
                 {
-                    // Initialiserer hvert felt (PictureBox) og tilføjer til arrayet
+                    // her danner vi alle felter (som en PictureBox) og tilføjer dem til arrayet
                     Placering[i, j] = new PictureBox();
                     Placering[i, j].BackColor = colors[(j % 2 == 0) ? 1 : 0]; // Skifter farve for skakmønster
                     Placering[i, j].Location = new Point(venstre, top);
@@ -94,7 +94,7 @@ namespace Dam
                     {
 
                         PictureBox p = sender3 as PictureBox;
-                        if (p.Image != null) //siger vi essentielt at hvis der er et billede på boxen altså "et brik", så skal den udføre det følgende
+                        if (p.Image != null) //siger vi essentielt at hvis der ikke er et billede på boxen altså "et brik", så skal den udføre det følgende
                         {
                             int c = -1, x, y;
                             valgfjerner(); // Fjerner mulige træk fra sidste tur
@@ -117,6 +117,18 @@ namespace Dam
                                     p.Image = Properties.Resources.W;
                                     p.Name = p.Name.Replace("b", "W");
                                 }
+                                else if (k.Split(' ')[2] == "Ks")
+                                {
+                                    p.Image = Properties.Resources.Ks;
+                                    p.Name = p.Name.Replace("b", "Ks");
+                                }
+                                else if (k.Split(' ')[2] == "Kw")
+                                {
+                                    p.Image = Properties.Resources.Kw;
+                                    p.Name = p.Name.Replace("b", "Kw");
+                                }
+
+
                                 Placering[x, y].Image = null;
 
                                 // Hvis modstanderens brik blev taget
@@ -267,13 +279,6 @@ namespace Dam
         {
             this.Close();
         }
-
-        private void btnStart_Click(object sender, EventArgs e)
-        {
-            btnStart.Visible = false;
-            btnQuit.Visible = true;
-            
-        }
         // Event for genstartsknap, der kalder restart-metoden
         private void button1_Click(object sender, EventArgs e)
         {
@@ -286,10 +291,6 @@ namespace Dam
             this.Close();
         }
 
-        private void MenuRestart_Click(object sender, EventArgs e)
-        {
-            restart();
-            btnQuit.Visible = false; btnStart.Visible = true;
-        }
+        
     }
 }

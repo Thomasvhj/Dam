@@ -29,8 +29,6 @@
         private void InitializeComponent()
         {
             this.G = new System.Windows.Forms.Panel();
-            this.btnQuit = new System.Windows.Forms.Button();
-            this.btnStart = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -55,29 +53,6 @@
             this.G.Name = "G";
             this.G.Size = new System.Drawing.Size(1007, 931);
             this.G.TabIndex = 0;
-            // 
-            // btnQuit
-            // 
-            this.btnQuit.Location = new System.Drawing.Point(1096, 880);
-            this.btnQuit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnQuit.Name = "btnQuit";
-            this.btnQuit.Size = new System.Drawing.Size(150, 156);
-            this.btnQuit.TabIndex = 2;
-            this.btnQuit.Text = "Quit";
-            this.btnQuit.UseVisualStyleBackColor = true;
-            this.btnQuit.Visible = false;
-            this.btnQuit.Click += new System.EventHandler(this.btnQuit_Click);
-            // 
-            // btnStart
-            // 
-            this.btnStart.Location = new System.Drawing.Point(1096, 880);
-            this.btnStart.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnStart.Name = "btnStart";
-            this.btnStart.Size = new System.Drawing.Size(150, 156);
-            this.btnStart.TabIndex = 3;
-            this.btnStart.Text = "Start";
-            this.btnStart.UseVisualStyleBackColor = true;
-            this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
             // 
             // label1
             // 
@@ -171,7 +146,7 @@
             this.Menu});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1748, 42);
+            this.menuStrip1.Size = new System.Drawing.Size(1748, 48);
             this.menuStrip1.TabIndex = 11;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -181,20 +156,20 @@
             this.MenuQuit,
             this.MenuRestart});
             this.Menu.Name = "Menu";
-            this.Menu.Size = new System.Drawing.Size(97, 40);
+            this.Menu.Size = new System.Drawing.Size(97, 44);
             this.Menu.Text = "Menu";
             // 
             // MenuQuit
             // 
             this.MenuQuit.Name = "MenuQuit";
-            this.MenuQuit.Size = new System.Drawing.Size(359, 44);
+            this.MenuQuit.Size = new System.Drawing.Size(219, 44);
             this.MenuQuit.Text = "Quit";
             this.MenuQuit.Click += new System.EventHandler(this.MenuQuit_Click);
             // 
             // MenuRestart
             // 
             this.MenuRestart.Name = "MenuRestart";
-            this.MenuRestart.Size = new System.Drawing.Size(359, 44);
+            this.MenuRestart.Size = new System.Drawing.Size(219, 44);
             this.MenuRestart.Text = "Restart";
             this.MenuRestart.Click += new System.EventHandler(this.MenuRestart_Click);
             // 
@@ -210,8 +185,6 @@
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.btnStart);
-            this.Controls.Add(this.btnQuit);
             this.Controls.Add(this.G);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
@@ -229,8 +202,6 @@
         #endregion
 
         private System.Windows.Forms.Panel G;
-        private System.Windows.Forms.Button btnQuit;
-        private System.Windows.Forms.Button btnStart;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox textBox1;
