@@ -138,8 +138,6 @@ namespace Dam
                                     }
                                     winner(); // Tjekker om nogen har vundet
                                     k2 = "";
-
-
                                 }
                             }
                             else
