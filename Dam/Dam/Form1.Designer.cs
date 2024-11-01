@@ -48,6 +48,7 @@
             // 
             // G
             // 
+            this.G.AutoSize = true;
             this.G.BackColor = System.Drawing.Color.Gray;
             this.G.Location = new System.Drawing.Point(12, 105);
             this.G.Name = "G";
@@ -177,6 +178,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(1748, 1106);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label2taget);
