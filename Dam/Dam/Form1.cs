@@ -282,11 +282,6 @@ namespace Dam
                 label3.Text = textBox2.Text + " Vandt!";
             }
         }
-        // Event for start- og quit-knapper
-        private void btnQuit_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
         // Event for genstartsknap, der kalder restart-metoden
         private void button1_Click(object sender, EventArgs e)
         {
