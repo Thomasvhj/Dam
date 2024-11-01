@@ -84,7 +84,7 @@ namespace Dam
                     {
 
                         PictureBox p = sender3 as PictureBox;
-                        if (p.Image != null)
+                        if (p.Image != null) //siger vi essentielt at hvis der er et billede på boxen altså "et brik", så skal den udføre det følgende
                         {
                             int c = -1, x, y;
                             valgfjerner();
@@ -214,18 +214,24 @@ namespace Dam
 
         public void restart()
         {
-            for (int h = 0; h < n; h++)
-                for (int l = 0; l < n; l++)
+            for (int h = 0; h < 8; h++)
+                for (int l = 0; l < 8; l++)
             {
-                if (h < (n / 2) - 1 && Placering[h, l].BackColor == Color.SandyBrown) 
+                if (h < (8 / 2) - 1 && Placering[h, l].BackColor == Color.SandyBrown) 
                     {
-                        Placering[h, l].Image = Properties.Resources.s; Placering[h, l].Name = h +"  "+l+ " s"; 
+                        Placering[h, l].Image = Properties.Resources.s;
+                        Placering[h, l].Name = h +"  "+ l + " s"; 
                     }
-                else if (h > (n / 2) && Placering[h, l].BackColor == Color.SandyBrown)
+                else if (h > (8 / 2) && Placering[h, l].BackColor == Color.SandyBrown)
                 {
-                    Placering[h, l].Image = Properties.Resources.W; Placering[h, l].Name = h + "  " +l+ " W";
+                    Placering[h, l].Image = Properties.Resources.W;
+                    Placering[h, l].Name = h + "  " + l + " W";
                 }
-                if (h == ((n / 2) - 1) || h == (n / 2)) Placering[h, l].Image = null;
+                if (h == ((8 / 2) - 1) || h == (8 / 2))
+                    {
+                        Placering[h, l].Image = null;
+                    }
+                   
             }
             label1taget.Text = "Taget brikker; 0";
             label2taget.Text = "Taget brikker; 0";
