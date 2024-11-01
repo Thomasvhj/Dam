@@ -17,7 +17,6 @@ namespace Dam
         {
             InitializeComponent();
         }
-        int n;
         int player1;
         int player2;
         PictureBox[,] Placering;
@@ -128,8 +127,6 @@ namespace Dam
                                     }
                                     winner();
                                     k2 = "";
-
-
                                 }
                             }
                             else
@@ -269,8 +266,8 @@ namespace Dam
         {
             groupBox1.Visible = false;
             restart();
-
-            
+ 
         }
+
     }
 }
