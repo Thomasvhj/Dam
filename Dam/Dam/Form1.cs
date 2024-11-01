@@ -17,27 +17,31 @@ namespace Dam
         {
             InitializeComponent();
         }
-        int player1;
-        int player2;
-        PictureBox[,] Placering;
-        string color = "s";
-        string k = "";
-        string B1 = "";
-        string B2 = "";
-        string k2 = "";
-        
+        // spilvariabler
+        int n; // Ukendt funktion, muligvis ikke i brug
+        int player1; // Holder styr på antallet af brikker, som spiller 1 har taget
+        int player2; // Holder styr på antallet af brikker, som spiller 2 har taget
+        PictureBox[,] Placering; // Et 8x8 bræt med PictureBoxes, der repræsenterer felterne
+        string color = "s"; // Holder styr på hvilken spillers tur det er ("s" eller "W")
+        string k = ""; // Midlertidig variabel til markering af felt/brik
+        string B1 = ""; // Midlertidig markering af første mulige bevægelse
+        string B2 = ""; // Midlertidig markering af anden mulige bevægelse
+        string k2 = ""; // Midlertidig variabel til markering af modstanderens brik, der kan tages
 
+       
+        // Formens Load-event, kaldes når formen indlæses
         private void Form1_Load(object sender, EventArgs e)
         { 
-            groupBox1.Visible=false;
+            groupBox1.Visible=false; // Skjuler vinderfeltet ved start
             
+            // Initialiserer brættet med en 8x8 matrice af PictureBoxes
             Placering = new PictureBox[8, 8];
-            int venstre = 2, top = 2;
-            Color[] colors = new Color[] { Color.SaddleBrown, Color.SandyBrown };
-            for (int i = 0; i < 8; i++)
+            int venstre = 2, top = 2; // Startpositioner for felterne
+            Color[] colors = new Color[] { Color.SaddleBrown, Color.SandyBrown }; // Brættets farver
+            for (int i = 0; i < 8; i++) // Rækker
             {
-                venstre = 2;
-                if (i % 2 == 0)
+                venstre = 2; // Nulstil venstre position til start af rækken
+                if (i % 2 == 0) // Skakmønster starter forskelligt for hver anden række
                 {
                     colors[0] = Color.SaddleBrown; 
                     colors[1] = Color.SandyBrown; 
@@ -48,37 +52,44 @@ namespace Dam
                     colors[1] = Color.SaddleBrown; 
                 }
 
-                for (int j = 0; j < 8; j++)
+                for (int j = 0; j < 8; j++) // Kolonner
                 {
+                    // Initialiserer hvert felt (PictureBox) og tilføjer til arrayet
                     Placering[i, j] = new PictureBox();
-                    Placering[i, j].BackColor = colors[(j % 2 == 0) ? 1 : 0];
+                    Placering[i, j].BackColor = colors[(j % 2 == 0) ? 1 : 0]; // Skifter farve for skakmønster
                     Placering[i, j].Location = new Point(venstre, top);
                     Placering[i, j].Size = new Size(60, 60);
-                    venstre += 60;
-                    Placering[i, j].Name = i + " " + j;
+                    venstre += 60; // Flytter positionen til næste felt
+                    Placering[i, j].Name = i + " " + j; // Sætter navn baseret på position
 
                     if (i < (8 / 2) - 1 && Placering[i, j].BackColor == Color.SandyBrown)
                     { 
-                        Placering[i, j].Image = Properties.Resources.s; Placering[i, j].Name += " s"; //Her opstiller vi brikkerne
+                        Placering[i, j].Image = Properties.Resources.s; Placering[i, j].Name += " s"; // Røde brikker for spiller 1
                     }
                     else if (i > (8 / 2) && Placering[i, j].BackColor == Color.SandyBrown)
                     {
-                        Placering[i, j].Image = Properties.Resources.W; Placering[i, j].Name += " W"; //Her opstiller vi brikkerne 
+                        Placering[i, j].Image = Properties.Resources.W; Placering[i, j].Name += " W"; // Hvide brikker for spiller 2
                     }
+
+                    // Konfigurerer billede i midten af PictureBox
                     Placering[i, j].SizeMode = PictureBoxSizeMode.CenterImage;
+
+                    // Event for når musen holdes over et felt
                     Placering[i, j].MouseHover += (sender2, e2) =>
                     {
                         PictureBox p = sender2 as PictureBox;
-                        if (p.Image != null) p.BackColor = Color.FromArgb(255, 64, 64, 64);
+                        if (p.Image != null) p.BackColor = Color.FromArgb(255, 64, 64, 64); // Skifter baggrund for at fremhæve brikker
                     };
+
+                    // Event for når musen forlader feltet
                     Placering[i, j].MouseLeave += (sender2, e2) =>
                     {
                         PictureBox p = sender2 as PictureBox;
-                        if (p.Image != null) p.BackColor = Color.SandyBrown;
+                        if (p.Image != null) p.BackColor = Color.SandyBrown; // Skifter tilbage til normal farve
                     };
 
 
-
+                    // Click-event for hver PictureBox (felt)
                     Placering[i, j].Click += (sender3, e3) =>
                     {
 
@@ -86,7 +97,7 @@ namespace Dam
                         if (p.Image != null) //siger vi essentielt at hvis der er et billede på boxen altså "et brik", så skal den udføre det følgende
                         {
                             int c = -1, x, y;
-                            valgfjerner();
+                            valgfjerner(); // Fjerner mulige træk fra sidste tur
                             if (p.Name.Split(' ')[2] == "b")
                             {
                                 if (color == "s") color = "W";
@@ -108,7 +119,7 @@ namespace Dam
                                 }
                                 Placering[x, y].Image = null;
 
-
+                                // Hvis modstanderens brik blev taget
                                 if (k2 != "")
                                 {
                                     x = Convert.ToInt32(k2.Split(' ')[0]);
@@ -116,16 +127,16 @@ namespace Dam
                                     Placering[x, y].Image = null;
                                     if (k2.Split(' ')[2] == "s")
                                     {
-                                        player1++;
+                                        player1++; // Opdaterer spiller 1’s point
                                         label2taget.Text = "Taget brikker; " + player1.ToString();
                                     }
 
                                     else
                                     {
-                                        player2++;
+                                        player2++; // Opdaterer spiller 2’s point
                                         label1taget.Text = "Taget brikker; " + player2.ToString();
                                     }
-                                    winner();
+                                    winner(); // Tjekker om nogen har vundet
                                     k2 = "";
                                 }
                             }
@@ -137,6 +148,7 @@ namespace Dam
                                 y = Convert.ToInt32(p.Name.Split(' ')[1]);
                                 k = p.Name;
                                 if (p.Name.Split(' ')[2] == "s") c = 1;
+                                // Tjekker om det næste felt er tomt og markerer træk
                                 try
                                 {
                                     if (Placering[x + c, y + 1].Image == null)
@@ -158,6 +170,7 @@ namespace Dam
                                     }
                                 }
                                 catch { }
+                                // Gentager for venstre bevægelse
                                 try
                                 {
                                     if (Placering[x + c, y - 1].Image == null)
@@ -181,16 +194,16 @@ namespace Dam
                         }
                     };
 
-                    G.Controls.Add(Placering[i, j]);
+                    G.Controls.Add(Placering[i, j]); // Tilføjer PictureBox til formen
                 }
-                top += 60;
+                top += 60; // Flytter top til næste række
 
             }
 
         }
 
- 
 
+        // Fjerner midlertidige træk
         private void valgfjerner()
         {
             if (B1 != "")
@@ -208,7 +221,7 @@ namespace Dam
                 Placering[x, y].Image = null;
             }
         }
-
+        // Nulstiller spillet til starttilstand
         public void restart()
         {
             for (int h = 0; h < 8; h++)
@@ -236,6 +249,7 @@ namespace Dam
             player2 = 0;
             
         }
+        // Tjekker om en spiller har vundet spillet
         private void winner()
         {
             if (player1 == 12)
@@ -249,7 +263,7 @@ namespace Dam
                 label3.Text = textBox2.Text + " Vandt!";
             }
         }
-
+        // Event for start- og quit-knapper
         private void btnQuit_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -261,7 +275,7 @@ namespace Dam
             btnQuit.Visible = true;
             
         }
-
+        // Event for genstartsknap, der kalder restart-metoden
         private void button1_Click(object sender, EventArgs e)
         {
             groupBox1.Visible = false;
