@@ -147,7 +147,7 @@
             this.Menu});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1748, 48);
+            this.menuStrip1.Size = new System.Drawing.Size(1748, 42);
             this.menuStrip1.TabIndex = 11;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -157,20 +157,20 @@
             this.MenuQuit,
             this.MenuRestart});
             this.Menu.Name = "Menu";
-            this.Menu.Size = new System.Drawing.Size(97, 44);
+            this.Menu.Size = new System.Drawing.Size(97, 38);
             this.Menu.Text = "Menu";
             // 
             // MenuQuit
             // 
             this.MenuQuit.Name = "MenuQuit";
-            this.MenuQuit.Size = new System.Drawing.Size(219, 44);
+            this.MenuQuit.Size = new System.Drawing.Size(359, 44);
             this.MenuQuit.Text = "Quit";
             this.MenuQuit.Click += new System.EventHandler(this.MenuQuit_Click);
             // 
             // MenuRestart
             // 
             this.MenuRestart.Name = "MenuRestart";
-            this.MenuRestart.Size = new System.Drawing.Size(219, 44);
+            this.MenuRestart.Size = new System.Drawing.Size(359, 44);
             this.MenuRestart.Text = "Restart";
             this.MenuRestart.Click += new System.EventHandler(this.MenuRestart_Click);
             // 

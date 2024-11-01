@@ -127,8 +127,6 @@ namespace Dam
                                     p.Image = Properties.Resources.Kw;
                                     p.Name = p.Name.Replace("b", "Kw");
                                 }
-
-
                                 Placering[x, y].Image = null;
 
                                 // Hvis modstanderens brik blev taget
@@ -143,7 +141,17 @@ namespace Dam
                                         label2taget.Text = "Taget brikker; " + player1.ToString();
                                     }
 
-                                    else
+                                    else if (k2.Split(' ')[2] == "W")
+                                    {
+                                        player2++; // Opdaterer spiller 2’s point
+                                        label1taget.Text = "Taget brikker; " + player2.ToString();
+                                    }
+                                    else if (k2.Split(' ')[2] == "Ks")
+                                    {
+                                        player1++;
+                                        label2taget.Text = "Taget brikker; " + player1.ToString();
+                                    }
+                                    else if (k2.Split(' ')[2] == "Kw")
                                     {
                                         player2++; // Opdaterer spiller 2’s point
                                         label1taget.Text = "Taget brikker; " + player2.ToString();
@@ -291,6 +299,9 @@ namespace Dam
             this.Close();
         }
 
-        
+        private void MenuRestart_Click(object sender, EventArgs e)
+        {
+            restart();
+        }
     }
 }
